@@ -84,6 +84,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_salaryLabel" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="PKR -"
+        android:textColor="#001727"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_salary"
+        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
     <EditText
         android:id="@+id/editText_individualSalary_salary"
         android:layout_width="0dp"
@@ -111,14 +122,118 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_individualSalary_exemptSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Exempt Salary (if any)"
+        android:textColor="#001727"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/textView_individualSalary_pkrLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_salary"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_ExemptSalary"
         app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+    <EditText
+        android:id="@+id/editText_individualSalary_ExemptSalary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:hint='Ex. 20000'
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:theme="@style/SpinnerTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_exemptSalary" />
+
+    <View
+        android:id="@+id/view_second"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#ADB4B9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_ExemptSalary"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView_individualSalary_TaxableSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Taxable Salary"
+        android:textColor="#001727"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_second" />
+
+    <TextView
+        android:id="@+id/textView_individualSalary_pkrLabelThird"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="PKR -"
+        android:textColor="#001727"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_TaxableSalary"
+        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+    <EditText
+        android:id="@+id/editText_individualSalary_TaxableSalary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:hint='Ex. 20000'
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:theme="@style/SpinnerTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_TaxableSalary" />
+
+    <View
+        android:id="@+id/view_third"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#ADB4B9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_TaxableSalary"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btn_individualSalary_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Next"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

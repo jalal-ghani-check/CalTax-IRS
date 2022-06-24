@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".individual.IndividualPropertyActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:theme="@style/ToolbarTheme"
+            app:titleTextColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textView_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Progress: "
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/textView_progress_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="14%"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/textView_progress"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:max="100"
+            android:progress="14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_progress" />
+
+
+        <TextView
+            android:id="@+id/textView_individualProperty_AdjustableRentLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#1B015196"
+            android:fontFamily="@font/poppins_semibold"
+            android:padding="16dp"
+            android:text="Income From Property"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+        <TextView
+            android:id="@+id/textView_individualProperty_rentReceived"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Rent Received or Receivable"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_individualProperty_AdjustableRentLabel" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PKR -"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualProperty_rentReceived"
+            app:layout_constraintStart_toStartOf="@+id/textView_individualProperty_rentReceived" />
+
+        <EditText
+            android:id="@+id/editText_individualProperty_rentReceived"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:hint='Ex. 75000'
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_individualProperty_rentReceived" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ADB4B9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_individualProperty_rentReceived"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_LabelTaxYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="1/10th of amount not adjustable against Rent"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PKR -"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualProperty_AdjustableRent"
+            app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+        <EditText
+            android:id="@+id/editText_individualProperty_AdjustableRent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:hint='Ex. 75000'
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_LabelTaxYear" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ADB4B9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_individualProperty_AdjustableRent"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_individualProperty_ContractForSaleLabek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Forfeited Deposit under a Contract for Sale of Property"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textView_individualSalary_pkrLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PKR -"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualProperty_contractForSale"
+            app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+        <EditText
+            android:id="@+id/editText_individualProperty_contractForSale"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:hint='Ex. 20000'
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_individualProperty_ContractForSaleLabek" />
+
+        <View
+            android:id="@+id/view_second"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ADB4B9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_individualProperty_contractForSale"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_individualProperty_totalDeductionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Total Deductions from Property/ Rent"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_second" />
+
+        <TextView
+            android:id="@+id/textView_individualSalary_pkrLabelThird"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PKR -"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualProperty_totalDeduction"
+            app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+        <EditText
+            android:id="@+id/editText_individualProperty_totalDeduction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:hint='Ex. 20000'
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_individualProperty_totalDeductionLabel" />
+
+        <View
+            android:id="@+id/view_third"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ADB4B9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_individualProperty_totalDeduction"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textView_individualProperty_totalIncomeTax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Taxable Income from Property"
+            android:textColor="#001727"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_third" />
+
+        <TextView
+            android:id="@+id/textView_individualSalary_pkrLabelForth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="PKR -"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualProperty_totalIncomeTax"
+            app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+
+        <EditText
+            android:id="@+id/editText_individualProperty_totalIncomeTax"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:hint='Ex. 20000'
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:theme="@style/SpinnerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView_individualProperty_totalIncomeTax" />
+
+        <View
+            android:id="@+id/view_forth"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#ADB4B9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_individualProperty_totalIncomeTax"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_individualProperty_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Next"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
+
+
