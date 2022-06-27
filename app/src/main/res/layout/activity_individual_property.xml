@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
-            android:id="@+id/textView_progress_value"
+            android:id="@+id/textView_individualProperty_progressValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -49,6 +49,19 @@
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView_progress"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/textView_individualProperty_remainingProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="13dp"
+            android:text="(2/6)"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="#001727"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_individualProperty_progressValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_individualProperty_progressValue" />
 
 
         <ProgressBar

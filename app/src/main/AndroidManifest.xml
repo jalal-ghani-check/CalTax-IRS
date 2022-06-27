@@ -14,19 +14,32 @@
         android:theme="@style/Theme.CalTax"
         tools:targetApi="31">
         <activity
-            android:name=".individual.IndividualPropertyActivity"
-            android:exported="true" >
+            android:name=".individual.TaxCreditsActivity"
+            android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".individual.IndividualSalary"
-            android:exported="true">
 
         </activity>
+        <activity
+            android:name=".individual.IndividualDeductableAllowance"
+            android:exported="true"/>
+
+        <activity
+            android:name=".individual.IndividualCapitalGainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".individual.IndividualBusinessActivity"
+            android:exported="true" />
+        <activity
+            android:name=".individual.IndividualPropertyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".individual.IndividualSalary"
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true" />

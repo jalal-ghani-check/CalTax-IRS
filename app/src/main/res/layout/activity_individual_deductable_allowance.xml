@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    tools:context=".individual.IndividualSalary">
+    tools:context=".individual.IndividualDeductableAllowance">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -32,57 +32,59 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_progressValue"
+        android:id="@+id/textView_individualDeductibleAllowance_progressValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="0%"
+        android:text="57%"
         android:textColor="#001727"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView_progress"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_remainingProgress"
+        android:id="@+id/textView_individualBusiness_remainingProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
-        android:text="(2/6)"
+        android:text="(4/6)"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_individualSalary_progressValue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_individualDeductibleAllowance_progressValue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_individualSalary_progressValue" />
+        app:layout_constraintTop_toTopOf="@+id/textView_individualDeductibleAllowance_progressValue" />
 
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_individualDeductibleAllowance"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:max="100"
+        android:progress="57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_progress" />
 
 
     <TextView
-        android:id="@+id/textView_individualSalary_salaryLabel"
+        android:id="@+id/textView_individualBusiness_salaryLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#1B015196"
         android:fontFamily="@font/poppins_semibold"
         android:padding="16dp"
-        android:text="Salary"
+        android:text="Deductible Allowances"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_individualDeductibleAllowance" />
 
     <TextView
         android:id="@+id/textView_LabelTaxYear"
@@ -91,11 +93,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Income From Salary"
+        android:text="Zakat U/S 60"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_salaryLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualBusiness_salaryLabel" />
 
     <TextView
         android:id="@+id/textView"
@@ -105,11 +107,11 @@
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_salary"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualDeductibleAllowance_zakat"
         app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_salary"
+        android:id="@+id/editText_individualDeductibleAllowance_zakat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -123,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_LabelTaxYear" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewOne"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -131,49 +133,49 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_salary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualDeductibleAllowance_zakat"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_exemptSalary"
+        android:id="@+id/textView_individualDeductibleAllowance_profitOnDebt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Exempt Salary (if any)"
+        android:text="Profit on Debt etc. U/S 64A"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/viewOne" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_pkrLabel"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_ExemptSalary"
-        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualDeductibleAllowance_profitOnDebt"
+        app:layout_constraintStart_toStartOf="@+id/textView_individualDeductibleAllowance_profitOnDebt" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_ExemptSalary"
+        android:id="@+id/editText_individualDeductibleAllowance_profitOnDebt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:hint='Ex. 75000'
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_exemptSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualDeductibleAllowance_profitOnDebt" />
 
     <View
-        android:id="@+id/view_second"
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -181,49 +183,49 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_ExemptSalary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualDeductibleAllowance_profitOnDebt"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_TaxableSalary"
+        android:id="@+id/textView_individualDeductibleAllowance_EducationalExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Taxable Salary"
+        android:text="Educational Expenses"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_second" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_pkrLabelThird"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_TaxableSalary"
-        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualDeductibleAllowance_EducationalExpense"
+        app:layout_constraintStart_toStartOf="@+id/textView_individualDeductibleAllowance_EducationalExpense" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_TaxableSalary"
+        android:id="@+id/editText_individualDeductibleAllowance_EducationalExpense"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:hint='Ex. 75000'
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_TaxableSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualDeductibleAllowance_EducationalExpense" />
 
     <View
-        android:id="@+id/view_third"
+        android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -231,11 +233,11 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_TaxableSalary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualDeductibleAllowance_EducationalExpense"
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/btn_individualSalary_next"
+        android:id="@+id/btn_individualDeductibleAllowance_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -247,6 +249,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

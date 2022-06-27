@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    tools:context=".individual.IndividualSalary">
+    tools:context=".individual.IndividualCapitalGainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -32,70 +31,72 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_progressValue"
+        android:id="@+id/textView_individualBusiness_progressValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="0%"
+        android:text="43%"
         android:textColor="#001727"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView_progress"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_remainingProgress"
+        android:id="@+id/textView_individualCapitalGain_remainingProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp"
-        android:text="(2/6)"
+        android:text="(3/6)"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_individualSalary_progressValue"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_individualBusiness_progressValue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_individualSalary_progressValue" />
+        app:layout_constraintTop_toTopOf="@+id/textView_individualBusiness_progressValue" />
 
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_individualBusiness"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
+        android:max="100"
+        android:progress="43"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_progress" />
 
 
     <TextView
-        android:id="@+id/textView_individualSalary_salaryLabel"
+        android:id="@+id/textView_individualCapitalGain_capitalGain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#1B015196"
         android:fontFamily="@font/poppins_semibold"
         android:padding="16dp"
-        android:text="Salary"
+        android:text="Capital Gains"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_individualBusiness" />
 
     <TextView
-        android:id="@+id/textView_LabelTaxYear"
+        android:id="@+id/textView_individualCapitalGain_totalGrossProfitLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Income From Salary"
+        android:text="Total Gross Profit"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_salaryLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_capitalGain" />
 
     <TextView
         android:id="@+id/textView"
@@ -105,11 +106,11 @@
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_salary"
-        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualCapitalGain_capitalGain"
+        app:layout_constraintStart_toStartOf="@+id/textView_individualCapitalGain_totalGrossProfitLabel" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_salary"
+        android:id="@+id/editText_individualCapitalGain_capitalGain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -120,10 +121,10 @@
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_totalGrossProfitLabel" />
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/viewOne"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -131,49 +132,65 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_salary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualCapitalGain_capitalGain"
         tools:visibility="visible" />
 
+
     <TextView
-        android:id="@+id/textView_individualSalary_exemptSalary"
+        android:id="@+id/textView_individualCapitalGain_otherSourcesLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#1B015196"
+        android:fontFamily="@font/poppins_semibold"
+        android:padding="16dp"
+        android:text="Other Sources"
+        android:textColor="#001727"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewOne" />
+
+    <TextView
+        android:id="@+id/textView_individualCapitalGain_otherSources"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Exempt Salary (if any)"
+        android:text="Income from Other Sources"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_otherSourcesLabel" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_pkrLabel"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_ExemptSalary"
-        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualCapitalGain_otherSources"
+        app:layout_constraintStart_toStartOf="@+id/textView_individualCapitalGain_totalGrossProfitLabel" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_ExemptSalary"
+        android:id="@+id/editText_individualCapitalGain_otherSources"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:hint='Ex. 75000'
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_exemptSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_otherSources" />
 
     <View
-        android:id="@+id/view_second"
+        android:id="@+id/view2"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -181,49 +198,64 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_ExemptSalary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualCapitalGain_otherSources"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_TaxableSalary"
+        android:id="@+id/textView_individualCapitalGain_agricultureLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="#1B015196"
+        android:fontFamily="@font/poppins_semibold"
+        android:padding="16dp"
+        android:text="Agriculture"
+        android:textColor="#001727"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/textView_individualCapitalGain_agriculture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Taxable Salary"
+        android:text="Agriculture"
         android:textColor="#001727"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_second" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_agricultureLabel" />
 
     <TextView
-        android:id="@+id/textView_individualSalary_pkrLabelThird"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:text="PKR -"
         android:textColor="#001727"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_TaxableSalary"
-        app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualCapitalGain_agriculture"
+        app:layout_constraintStart_toStartOf="@+id/textView_individualCapitalGain_totalGrossProfitLabel" />
 
     <EditText
-        android:id="@+id/editText_individualSalary_TaxableSalary"
+        android:id="@+id/editText_individualCapitalGain_agriculture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:hint='Ex. 75000'
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView_individualSalary_TaxableSalary" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_individualCapitalGain_agriculture" />
 
     <View
-        android:id="@+id/view_third"
+        android:id="@+id/view3"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
@@ -231,11 +263,12 @@
         android:background="#ADB4B9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_individualSalary_TaxableSalary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_individualCapitalGain_agriculture"
         tools:visibility="visible" />
+
 
     <Button
-        android:id="@+id/btn_individualSalary_next"
+        android:id="@+id/btn_individualCapitalGain_next"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -247,6 +280,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
