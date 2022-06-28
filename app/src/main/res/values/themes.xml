@@ -14,7 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
+        <!-- Transition -->
+        <item name="android:windowContentTransitions">true</item>
+
+
+</style>
 
     <style name="SpinnerTheme">
         <item name="android:textColor">#333333</item>

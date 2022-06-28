@@ -3,11 +3,17 @@ package com.irs.ghani.caltax.individual;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.irs.ghani.caltax.R;
 
 public class IndividualBusinessActivity extends AppCompatActivity {
+
+    Toolbar mToolbar;
+    Button mNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +30,15 @@ public class IndividualBusinessActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        // mToolbar.setTitleTextAppearance(this, R.style.ToolbarTheme);
+
+        Button mNext = findViewById(R.id.btn_individualBusiness_next);
+        mNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(IndividualBusinessActivity.this , IndividualCapitalGainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
