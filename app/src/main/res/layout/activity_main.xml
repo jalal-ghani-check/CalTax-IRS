@@ -108,61 +108,61 @@
         app:layout_constraintTop_toBottomOf="@+id/viewSecond" />
 
     <CheckBox
-        android:id="@+id/checkedTextView"
+        android:id="@+id/checkboxSalary"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Salary"
-        app:layout_constraintEnd_toStartOf="@+id/checkedTextView2"
+        app:layout_constraintEnd_toStartOf="@+id/checkboxCapitalGain"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_label_typeOfIncome" />
 
     <CheckBox
-        android:id="@+id/checkedTextView2"
+        android:id="@+id/checkboxCapitalGain"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:text="Capital Gain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkedTextView"
+        app:layout_constraintStart_toEndOf="@+id/checkboxSalary"
         app:layout_constraintTop_toBottomOf="@+id/tv_label_typeOfIncome" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxProperty"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Property"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxOtherSources"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkedTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/checkboxSalary" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBoxOtherSources"
         android:layout_width="0dp"
         android:layout_height="24dp"
         android:layout_marginTop="8dp"
         android:text="Other Sources"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/checkedTextView2" />
+        app:layout_constraintStart_toEndOf="@+id/checkBoxProperty"
+        app:layout_constraintTop_toBottomOf="@+id/checkboxCapitalGain" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/checkBoxBusiness"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Business"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxProperty" />
 
     <Button
         android:id="@+id/btn_home_next"
