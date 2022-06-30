@@ -22,12 +22,7 @@ public class IndividualAdjustableTax extends AppCompatActivity {
         setContentView(R.layout.activity_individual_adjustable_tax);
         setViews();
 
-        mNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(IndividualAdjustableTax.this, "Summary page design pending" , Toast.LENGTH_LONG).show();
-            }
-        });
+        mNext.setOnClickListener(view -> Toast.makeText(IndividualAdjustableTax.this, "Summary page design pending" , Toast.LENGTH_LONG).show());
 
     }
 

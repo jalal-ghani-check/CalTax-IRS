@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.irs.ghani.caltax.individual.IndividualAdjustableTax;
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // Helper.reset();
+    }
+
     private void setViews() {
         mNext = findViewById(R.id.btn_home_next);
         mSalary = findViewById(R.id.checkboxSalary);
@@ -58,31 +65,91 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListeners() {
         mNext.setOnClickListener(view -> {
-
             decideActivity();
+        });
 
+        mSalary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Helper.isIndividualSalary = true;
+                    Helper.totalScreensSelection++;
+                } else {
+                    Helper.isIndividualSalary = false;
+                    Helper.totalScreensSelection--;
+                }
+            }
+        });
+        mProperty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Helper.isIndividualProperty = true;
+                    Helper.totalScreensSelection++;
+                } else {
+                    Helper.isIndividualProperty = false;
+                    Helper.totalScreensSelection--;
+                }
+            }
+        });
+        mBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Helper.isIndividualBusiness = true;
+                    Helper.totalScreensSelection++;
+                } else {
+                    Helper.isIndividualBusiness = false;
+                    Helper.totalScreensSelection--;
+                }
+            }
+        });
+        mCapitalGain.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Helper.isIndividualCapitalGain = true;
+                    if (!Helper.isIndividualOtherSources)
+                        Helper.totalScreensSelection++;
+                } else {
+                    Helper.isIndividualCapitalGain = false;
+                    if (!Helper.isIndividualOtherSources)
+                        Helper.totalScreensSelection--;
+                }
+            }
+        });
+        mOtherSources.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Helper.isIndividualOtherSources = true;
+                    if (!Helper.isIndividualCapitalGain)
+                        Helper.totalScreensSelection++;
+                } else {
+                    Helper.isIndividualOtherSources = false;
+                    if (!Helper.isIndividualCapitalGain)
+                        Helper.totalScreensSelection--;
+                }
+            }
         });
     }
 
     private void decideActivity() {
-        Helper.isIndividualSalary = mSalary.isChecked();
-        Helper.isIndividualProperty = mProperty.isChecked();
-        Helper.isIndividualCapitalGain = mCapitalGain.isChecked();
-        Helper.isIndividualOtherSources = mOtherSources.isChecked();
-        Helper.isIndividualBusiness = mBusiness.isChecked();
 
-        if (Helper.isIndividualSalary)
+        if (Helper.isIndividualSalary) {
             intent = new Intent(MainActivity.this, IndividualSalary.class);
-        else if (Helper.isIndividualBusiness)
-            intent = new Intent(MainActivity.this, IndividualBusinessActivity.class);
-        else if (Helper.isIndividualCapitalGain)
-            intent = new Intent(MainActivity.this, IndividualCapitalGainActivity.class);
-        else if (Helper.isIndividualOtherSources)
-            intent = new Intent(MainActivity.this, IndividualCapitalGainActivity.class);
-        else if (Helper.isIndividualProperty)
+        }
+        else if (Helper.isIndividualProperty) {
             intent = new Intent(MainActivity.this, IndividualPropertyActivity.class);
-        else {
-            Toast.makeText(MainActivity.this, "Kindly Select At-least 1 Type of income", Toast.LENGTH_LONG).show();
+        }
+        else if (Helper.isIndividualBusiness) {
+            intent = new Intent(MainActivity.this, IndividualBusinessActivity.class);
+        }
+        else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+            intent = new Intent(MainActivity.this, IndividualCapitalGainActivity.class);
+        }
+        else if (Helper.totalScreensSelection < 4) {
+            Toast.makeText(MainActivity.this, "Kindly Select atleast 1 Type of income", Toast.LENGTH_LONG).show();
             return;
         }
         ActivityOptions options =
@@ -91,12 +158,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setAnimation() {
-        if (Build.VERSION.SDK_INT > 20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(400);
-            slide.setInterpolator(new DecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-        }
+        Slide slide = new Slide();
+        slide.setSlideEdge(Gravity.LEFT);
+        slide.setDuration(400);
+        slide.setInterpolator(new DecelerateInterpolator());
+        getWindow().setExitTransition(slide);
     }
 }
