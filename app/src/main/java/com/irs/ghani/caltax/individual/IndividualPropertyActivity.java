@@ -45,8 +45,6 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startTopBar();
-
-
     }
 
     private void startTopBar() {
@@ -94,13 +92,11 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        mNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityOptions options =
-                        ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
-                startActivity(intent, options.toBundle());
-            }
+        mNext.setOnClickListener(view -> {
+            Helper.currentScreensSelection++;
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
+            startActivity(intent, options.toBundle());
         });
     }
 
