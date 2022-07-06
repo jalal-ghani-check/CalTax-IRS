@@ -7,34 +7,28 @@ import android.animation.ValueAnimator;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
 import com.irs.ghani.caltax.util.ProgressBarAnimation;
 
-public class IndividualAdjustableTax extends AppCompatActivity {
+public class IndividualSummeryActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    Button mNext;
-    Intent intent;
-
-
     ProgressBar progressBar;
     TextView mTextViewProgress;
     TextView mTextViewProgressRemaining;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_individual_adjustable_tax);
+        setAnimation();
+        setContentView(R.layout.activity_individual_summery);
         setViews();
-        setListeners();
-
     }
 
     @Override
@@ -63,6 +57,7 @@ public class IndividualAdjustableTax extends AppCompatActivity {
 
         //ProgressBar Remaining Value
         mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
+
     }
 
     @Override
@@ -72,25 +67,11 @@ public class IndividualAdjustableTax extends AppCompatActivity {
             Helper.currentScreensSelection--;
     }
 
-    private void setListeners() {
-        mNext.setOnClickListener(view -> {
-            Helper.currentScreensSelection++;
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(IndividualAdjustableTax.this);
-            startActivity(intent, options.toBundle());
-        });
-    }
-
-
-    private void setViews()
-    {
-        mToolbar =  findViewById(R.id.toolbar);
-        mNext = findViewById(R.id.btn_individualAdjustableTax_next);
-        progressBar = findViewById(R.id.progressBar_individualTaxCredits);
-        mTextViewProgress = findViewById(R.id.textView_individualTaxCredits_progressValue);
-        mTextViewProgressRemaining = findViewById(R.id.textView_individualTaxCredits_remainingProgress);
-        intent = new Intent(IndividualAdjustableTax.this, IndividualSummeryActivity.class);
-
+    private void setViews() {
+        mToolbar = findViewById(R.id.toolbar);
+        progressBar = findViewById(R.id.progressBar);
+        mTextViewProgress = findViewById(R.id.textView_individualSummery_progressValue);
+        mTextViewProgressRemaining = findViewById(R.id.textView_individualSummery_remainingProgress);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Individual");
@@ -102,6 +83,15 @@ public class IndividualAdjustableTax extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    public void setAnimation() {
+
+        Slide slide = new Slide();
+        slide.setSlideEdge(Gravity.LEFT);
+        slide.setDuration(400);
+        slide.setInterpolator(new DecelerateInterpolator());
+        getWindow().setExitTransition(slide);
     }
 
 }
