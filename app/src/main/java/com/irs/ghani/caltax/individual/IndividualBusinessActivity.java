@@ -98,14 +98,24 @@ public class IndividualBusinessActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
-    private void setListeners()
-    {
+    private void setListeners() {
+
         mNext.setOnClickListener(view -> {
             Helper.currentScreensSelection++;
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(IndividualBusinessActivity.this);
-            startActivity(intent, options.toBundle());
+            decideActivity();
         });
+    }
+
+    private void decideActivity() {
+
+        if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+            intent = new Intent(IndividualBusinessActivity.this, IndividualCapitalGainActivity.class);
+        } else {
+            intent = new Intent(IndividualBusinessActivity.this, IndividualDeductableAllowance.class);
+        }
+        ActivityOptions options =
+                ActivityOptions.makeSceneTransitionAnimation(IndividualBusinessActivity.this);
+        startActivity(intent, options.toBundle());
     }
 
 

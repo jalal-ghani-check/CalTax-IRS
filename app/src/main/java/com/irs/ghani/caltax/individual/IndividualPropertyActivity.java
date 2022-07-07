@@ -92,12 +92,25 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+
         mNext.setOnClickListener(view -> {
             Helper.currentScreensSelection++;
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
-            startActivity(intent, options.toBundle());
+            decideActivity();
         });
+    }
+
+    private void decideActivity() {
+
+       if (Helper.isIndividualBusiness) {
+            intent = new Intent(IndividualPropertyActivity.this, IndividualBusinessActivity.class);
+        } else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+            intent = new Intent(IndividualPropertyActivity.this, IndividualCapitalGainActivity.class);
+        } else {
+            intent = new Intent(IndividualPropertyActivity.this, IndividualDeductableAllowance.class);
+        }
+        ActivityOptions options =
+                ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
+        startActivity(intent, options.toBundle());
     }
 
     @Override

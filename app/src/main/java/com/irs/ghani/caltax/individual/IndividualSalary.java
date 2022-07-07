@@ -15,6 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.irs.ghani.caltax.MainActivity;
 import com.irs.ghani.caltax.R;
@@ -56,16 +57,31 @@ public class IndividualSalary extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mTextViewProgressRemaining.setText(Helper.currentScreensSelection+"/"+Helper.totalScreensSelection);
+        mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
     }
 
     private void setListeners() {
+
         mNext.setOnClickListener(view -> {
             Helper.currentScreensSelection++;
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(IndividualSalary.this);
-            startActivity(intent, options.toBundle());
+            decideActivity();
         });
+    }
+
+    private void decideActivity() {
+
+        if (Helper.isIndividualProperty) {
+            intent = new Intent(IndividualSalary.this, IndividualPropertyActivity.class);
+        } else if (Helper.isIndividualBusiness) {
+            intent = new Intent(IndividualSalary.this, IndividualBusinessActivity.class);
+        } else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+            intent = new Intent(IndividualSalary.this, IndividualCapitalGainActivity.class);
+        } else {
+            intent = new Intent(IndividualSalary.this, IndividualDeductableAllowance.class);
+        }
+        ActivityOptions options =
+                ActivityOptions.makeSceneTransitionAnimation(IndividualSalary.this);
+        startActivity(intent, options.toBundle());
     }
 
     @Override
