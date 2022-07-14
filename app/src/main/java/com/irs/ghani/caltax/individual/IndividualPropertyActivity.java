@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,6 +30,12 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView mTextViewProgress;
     TextView mTextViewProgressRemaining;
+
+    EditText mRentReceived;
+    EditText mAmountNotAdjustableAgainstRent;
+    EditText mFortifiedDeposit;
+    EditText mTotalDeduction;
+    EditText mTaxableIncomeFromProperty;
 
 
     @Override
@@ -83,6 +90,12 @@ public class IndividualPropertyActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         mTextViewProgress = findViewById(R.id.textView_individualProperty_progressValue);
         mTextViewProgressRemaining = findViewById(R.id.textView_individualProperty_remainingProgress);
+        mRentReceived = findViewById(R.id.editText_individualProperty_rentReceived);
+        mAmountNotAdjustableAgainstRent = findViewById(R.id.editText_individualProperty_AdjustableRent);
+        mFortifiedDeposit = findViewById(R.id.editText_individualProperty_contractForSale);
+        mTotalDeduction = findViewById(R.id.editText_individualProperty_totalDeduction);
+        mTaxableIncomeFromProperty = findViewById(R.id.editText_individualProperty_totalIncomeTax);
+
         intent = new Intent(IndividualPropertyActivity.this, IndividualBusinessActivity.class);
 
         setSupportActionBar(mToolbar);
