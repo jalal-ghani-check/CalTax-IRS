@@ -8,7 +8,10 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
@@ -36,6 +40,13 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     EditText mFortifiedDeposit;
     EditText mTotalDeduction;
     EditText mTaxableIncomeFromProperty;
+
+    String rentReceived = "";
+    String amountNotAdjustable = "";
+    String fortifiedDeposit = "";
+    String totalDeduction = "";
+    String taxableIncomeFromProperty = "";
+
 
 
     @Override
@@ -106,6 +117,91 @@ public class IndividualPropertyActivity extends AppCompatActivity {
 
     private void setListeners() {
 
+        mRentReceived.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromProperty = Integer.toString(calculateTaxableIncomeFromProperty());
+                    mTaxableIncomeFromProperty.setText(taxableIncomeFromProperty);
+                } else {
+                    mTaxableIncomeFromProperty.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        mAmountNotAdjustableAgainstRent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromProperty = Integer.toString(calculateTaxableIncomeFromProperty());
+                    mTaxableIncomeFromProperty.setText(taxableIncomeFromProperty);
+                } else {
+                    mTaxableIncomeFromProperty.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        mFortifiedDeposit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromProperty = Integer.toString(calculateTaxableIncomeFromProperty());
+                    mTaxableIncomeFromProperty.setText(taxableIncomeFromProperty);
+                } else {
+                    mTaxableIncomeFromProperty.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        mTotalDeduction.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromProperty = Integer.toString(calculateTaxableIncomeFromProperty());
+                    mTaxableIncomeFromProperty.setText(taxableIncomeFromProperty);
+                } else {
+                    mTaxableIncomeFromProperty.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         mNext.setOnClickListener(view -> {
             Helper.currentScreensSelection++;
             decideActivity();
@@ -121,9 +217,17 @@ public class IndividualPropertyActivity extends AppCompatActivity {
         } else {
             intent = new Intent(IndividualPropertyActivity.this, IndividualDeductableAllowance.class);
         }
-        ActivityOptions options =
-                ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
-        startActivity(intent, options.toBundle());
+
+        if (Integer.parseInt(taxableIncomeFromProperty) > 0) {
+
+            Helper.setTaxableIncomeFromProperty(Integer.parseInt(taxableIncomeFromProperty));
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
+            startActivity(intent, options.toBundle());
+        } else {
+            Toast.makeText(IndividualPropertyActivity.this, "Property income must be greater than Total Deduction", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
@@ -140,5 +244,17 @@ public class IndividualPropertyActivity extends AppCompatActivity {
         slide.setInterpolator(new DecelerateInterpolator());
         getWindow().setExitTransition(slide);
     }
+
+    private int calculateTaxableIncomeFromProperty() {
+        int rentReceived = Integer.parseInt(mRentReceived.getText().toString());
+        int amountNotAdjustable = Integer.parseInt(mAmountNotAdjustableAgainstRent.getText().toString());
+        int fortifiedDeposit = Integer.parseInt(mFortifiedDeposit.getText().toString());
+        int totalDeduction = Integer.parseInt(mTotalDeduction.getText().toString());
+        int totalAmount = ((rentReceived + amountNotAdjustable + fortifiedDeposit) - totalDeduction);
+
+
+        return totalAmount > 0 ? totalAmount : -1;
+    }
+
 
 }

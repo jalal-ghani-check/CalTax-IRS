@@ -44,6 +44,11 @@ public class Helper {
         IndividualTaxModel2022.setTaxableIncomeFromSalary(salary);
     }
 
+    public static void setTaxableIncomeFromProperty(int propertyValue)
+    {
+        IndividualTaxModel2022.setTaxableIncomeFromProperty(propertyValue);
+    }
+
 
 
 }
