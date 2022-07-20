@@ -116,9 +116,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 75000'
+        android:text="0"
         android:padding="16dp"
         android:textSize="14sp"
+        android:inputType="number"
         android:theme="@style/SpinnerTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -166,7 +167,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:text="0"
+        android:inputType="number"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
@@ -216,7 +218,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 20000'
+        android:text="0"
+        android:enabled="false"
+        android:inputType="number"
+        android:textColor="@color/primaryColor"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"

@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -29,6 +30,11 @@ public class IndividualCapitalGainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView mTextViewProgress;
     TextView mTextViewProgressRemaining;
+
+    EditText mIncomeFromCapitalGain;
+    EditText mIncomeFromOtherSources;
+    EditText mIncomeFromAgriculture;
+
 
 
     @Override
@@ -83,6 +89,9 @@ public class IndividualCapitalGainActivity extends AppCompatActivity {
         mTextViewProgress = findViewById(R.id.textView_individualBusiness_progressValue);
         mTextViewProgressRemaining = findViewById(R.id.textView_individualCapitalGain_remainingProgress);
         intent = new Intent(IndividualCapitalGainActivity.this , IndividualDeductableAllowance.class);
+        mIncomeFromCapitalGain = findViewById(R.id.editText_individualCapitalGain_capitalGain);
+        mIncomeFromOtherSources = findViewById(R.id.editText_individualCapitalGain_otherSources);
+        mIncomeFromAgriculture = findViewById(R.id.editText_individualCapitalGain_agriculture);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Individual");
@@ -93,6 +102,13 @@ public class IndividualCapitalGainActivity extends AppCompatActivity {
     private void setListeners()
     {
         mNext.setOnClickListener(view -> {
+
+            int capitalGain = Integer.parseInt(mIncomeFromCapitalGain.getText().toString());
+            int otherSources = Integer.parseInt(mIncomeFromOtherSources.getText().toString());
+            int agriculture = Integer.parseInt(mIncomeFromAgriculture.getText().toString());
+
+            Helper.setCapitalGainData(capitalGain,otherSources,agriculture);
+
             Helper.currentScreensSelection++;
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(IndividualCapitalGainActivity.this);

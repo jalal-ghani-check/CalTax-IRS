@@ -49,6 +49,18 @@ public class Helper {
         IndividualTaxModel2022.setTaxableIncomeFromProperty(propertyValue);
     }
 
+    public static void setTaxableIncomeFromBusiness(int Value)
+    {
+        IndividualTaxModel2022.setTaxableIncomeFromBusiness(Value);
+    }
+
+    public static void setCapitalGainData(int capitalGain , int otherSources, int agriculture)
+    {
+        IndividualTaxModel2022.setIncomeFromCapitalGain(capitalGain);
+        IndividualTaxModel2022.setIncomeFromOtherSources(otherSources);
+        IndividualTaxModel2022.setIncomeFromAgriculture(agriculture);
+    }
+
 
 
 }

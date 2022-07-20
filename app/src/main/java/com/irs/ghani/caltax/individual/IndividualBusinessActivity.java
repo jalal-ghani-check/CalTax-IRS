@@ -8,13 +8,17 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
@@ -28,6 +32,12 @@ public class IndividualBusinessActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView mTextViewProgress;
     TextView mTextViewProgressRemaining;
+
+    EditText mTotalGrossProfit;
+    EditText mLessAdmissibleDeduction;
+    EditText mTaxableIncome;
+
+    String taxableIncomeFromBusiness = "";
 
 
     @Override
@@ -89,6 +99,9 @@ public class IndividualBusinessActivity extends AppCompatActivity {
         mTextViewProgressRemaining = findViewById(R.id.textView_individualBusiness_remainigProgress);
         progressBar = findViewById(R.id.progressBar_individualBusiness);
         mTextViewProgress = findViewById(R.id.textView_individualBusiness_progressValue);
+        mTotalGrossProfit = findViewById(R.id.editText_individualBusiness_GrossProfit);
+        mLessAdmissibleDeduction = findViewById(R.id.editText_individualBusiness_admissibleDeduction);
+        mTaxableIncome = findViewById(R.id.editText_individualBusiness_taxableIncome);
 
         intent = new Intent(IndividualBusinessActivity.this , IndividualCapitalGainActivity.class);
 
@@ -99,6 +112,51 @@ public class IndividualBusinessActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
+
+        mTotalGrossProfit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromBusiness = Integer.toString(calculateTaxableIncomeFromBusiness());
+                    mTaxableIncome.setText(taxableIncomeFromBusiness);
+                } else {
+                  //  mTotalGrossProfit.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        mLessAdmissibleDeduction.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() != 0) {
+                    taxableIncomeFromBusiness = Integer.toString(calculateTaxableIncomeFromBusiness());
+                    mTaxableIncome.setText(taxableIncomeFromBusiness);
+                } else {
+                    //  mTotalGrossProfit.setText("0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
 
         mNext.setOnClickListener(view -> {
             Helper.currentScreensSelection++;
@@ -113,9 +171,17 @@ public class IndividualBusinessActivity extends AppCompatActivity {
         } else {
             intent = new Intent(IndividualBusinessActivity.this, IndividualDeductableAllowance.class);
         }
-        ActivityOptions options =
-                ActivityOptions.makeSceneTransitionAnimation(IndividualBusinessActivity.this);
-        startActivity(intent, options.toBundle());
+
+        if (Integer.parseInt(taxableIncomeFromBusiness) > 0) {
+
+            Helper.setTaxableIncomeFromBusiness(Integer.parseInt(taxableIncomeFromBusiness));
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(IndividualBusinessActivity.this);
+            startActivity(intent, options.toBundle());
+        } else {
+            Toast.makeText(IndividualBusinessActivity.this, "Total Gross Profit must be greater than Less Admissible Deduction", Toast.LENGTH_LONG).show();
+        }
+
     }
 
 
@@ -126,5 +192,14 @@ public class IndividualBusinessActivity extends AppCompatActivity {
         slide.setDuration(400);
         slide.setInterpolator(new DecelerateInterpolator());
         getWindow().setExitTransition(slide);
+    }
+
+    private int calculateTaxableIncomeFromBusiness() {
+        int totalGrossProfit = Integer.parseInt(mTotalGrossProfit.getText().toString());
+        int lessAdmissibleDeduction = Integer.parseInt(mLessAdmissibleDeduction.getText().toString());
+        int totalAmount = totalGrossProfit - lessAdmissibleDeduction;
+
+
+        return totalAmount > 0 ? totalAmount : -1;
     }
 }

@@ -115,7 +115,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 75000'
+        android:text="0"
+        android:inputType="number"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
@@ -181,7 +182,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 75000'
+        android:text="0"
+        android:inputType="number"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"
@@ -246,7 +248,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:hint='Ex. 75000'
+        android:text="0"
+        android:inputType="number"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"

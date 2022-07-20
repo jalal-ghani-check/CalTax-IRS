@@ -41,10 +41,7 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     EditText mTotalDeduction;
     EditText mTaxableIncomeFromProperty;
 
-    String rentReceived = "";
-    String amountNotAdjustable = "";
-    String fortifiedDeposit = "";
-    String totalDeduction = "";
+
     String taxableIncomeFromProperty = "";
 
 
