@@ -1,7 +1,5 @@
 package com.irs.ghani.caltax.util;
 
-import android.animation.ValueAnimator;
-
 import com.irs.ghani.caltax.taxyearmodels.IndividualTaxModel2022;
 
 public class Helper {
@@ -39,28 +37,37 @@ public class Helper {
 
     //TAX MODEL HELPERS
 
-    public static void setTaxableSalary(int salary)
-    {
+    public static void setTaxableSalary(double salary) {
         IndividualTaxModel2022.setTaxableIncomeFromSalary(salary);
     }
 
-    public static void setTaxableIncomeFromProperty(int propertyValue)
-    {
+    public static void setTaxableIncomeFromProperty(int propertyValue) {
         IndividualTaxModel2022.setTaxableIncomeFromProperty(propertyValue);
     }
 
-    public static void setTaxableIncomeFromBusiness(int Value)
-    {
+    public static void setTaxableIncomeFromBusiness(int Value) {
         IndividualTaxModel2022.setTaxableIncomeFromBusiness(Value);
     }
 
-    public static void setCapitalGainData(int capitalGain , int otherSources, int agriculture)
-    {
+    public static void setCapitalGainData(int capitalGain, int otherSources, int agriculture) {
         IndividualTaxModel2022.setIncomeFromCapitalGain(capitalGain);
         IndividualTaxModel2022.setIncomeFromOtherSources(otherSources);
         IndividualTaxModel2022.setIncomeFromAgriculture(agriculture);
     }
 
+    public static void printTaxModelData() {
+        IndividualTaxModel2022.printTaxModelData2022();
+    }
+
+    public static void adJustTotalTaxableIncome() {
+        IndividualTaxModel2022.adJustTotalTaxableIncome();
+    }
+
+    public static void backPressed() {
+        if (Helper.currentScreensSelection > 1)
+            Helper.currentScreensSelection--;
+        Helper.adJustTotalTaxableIncome();
+    }
 
 
 }

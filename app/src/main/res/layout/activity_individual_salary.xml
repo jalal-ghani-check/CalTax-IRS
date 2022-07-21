@@ -214,7 +214,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/editText_individualSalary_TaxableSalary"
         app:layout_constraintStart_toStartOf="@+id/textView_LabelTaxYear" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText_individualSalary_TaxableSalary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -222,6 +222,7 @@
         android:background="@android:color/transparent"
         android:text="0"
         android:textColor="@color/primaryColor"
+        android:maxLength="15"
         android:padding="16dp"
         android:textSize="14sp"
         android:theme="@style/SpinnerTheme"

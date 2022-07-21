@@ -88,8 +88,7 @@ public class IndividualPropertyActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (Helper.currentScreensSelection > 1)
-            Helper.currentScreensSelection--;
+        Helper.backPressed();
     }
 
     private void setViews() {

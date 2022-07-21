@@ -37,9 +37,8 @@ public class IndividualSalary extends AppCompatActivity {
     TextView mTextViewProgressRemaining;
     EditText mSalary;
     EditText mSalaryExempt;
-    EditText mTaxableSalary;
+    TextView mTaxableSalary;
     String taxableSalary = "";
-
 
 
     @Override
@@ -60,7 +59,7 @@ public class IndividualSalary extends AppCompatActivity {
         mSalary = findViewById(R.id.editText_individualSalary_salary);
         mSalaryExempt = findViewById(R.id.editText_individualSalary_ExemptSalary);
         mTaxableSalary = findViewById(R.id.editText_individualSalary_TaxableSalary);
-        mTaxableSalary.setEnabled(false);
+      //  mTaxableSalary.setEnabled(false);
         intent = new Intent(IndividualSalary.this, IndividualPropertyActivity.class);
 
         setSupportActionBar(mToolbar);
@@ -91,7 +90,8 @@ public class IndividualSalary extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() != 0) {
-                    taxableSalary = Integer.toString(calculateTaxableSalary());
+                    taxableSalary = Double.toString(calculateTaxableSalary());
+                    Log.d("SALARY", taxableSalary);
                     mTaxableSalary.setText(taxableSalary);
                 } else {
                     mSalary.setText("0");
@@ -114,7 +114,7 @@ public class IndividualSalary extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() != 0) {
-                    taxableSalary = Integer.toString(calculateTaxableSalary());
+                    taxableSalary = Double.toString(calculateTaxableSalary());
                     mTaxableSalary.setText(taxableSalary);
                 } else {
                     mSalaryExempt.setText("0");
@@ -129,9 +129,16 @@ public class IndividualSalary extends AppCompatActivity {
         });
     }
 
-    private int calculateTaxableSalary() {
+    private double calculateTaxableSalary() {
+
+/*
         int salary = Integer.parseInt(mSalary.getText().toString());
         int exemptSalary = Integer.parseInt(mSalaryExempt.getText().toString());
+        return (salary - exemptSalary) > 0 ? (salary - exemptSalary) : -1;
+*/
+
+        double salary = Double.parseDouble(mSalary.getText().toString());
+        double exemptSalary = Double.parseDouble(mSalaryExempt.getText().toString());
 
         return (salary - exemptSalary) > 0 ? (salary - exemptSalary) : -1;
     }
@@ -148,9 +155,9 @@ public class IndividualSalary extends AppCompatActivity {
             intent = new Intent(IndividualSalary.this, IndividualDeductableAllowance.class);
         }
 
-        if (Integer.parseInt(taxableSalary) > 0) {
+        if (Double.parseDouble(taxableSalary) > 0) {
 
-            Helper.setTaxableSalary(Integer.parseInt(taxableSalary));
+            Helper.setTaxableSalary(Double.parseDouble(taxableSalary));
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(IndividualSalary.this);
             startActivity(intent, options.toBundle());
