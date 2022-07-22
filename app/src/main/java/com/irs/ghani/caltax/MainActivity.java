@@ -23,6 +23,7 @@ import com.irs.ghani.caltax.individual.IndividualPropertyActivity;
 import com.irs.ghani.caltax.individual.IndividualSalary;
 import com.irs.ghani.caltax.individual.TaxCreditsActivity;
 import com.irs.ghani.caltax.util.Helper;
+import com.irs.ghani.caltax.util.TaxModelHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    Helper.isIndividualSalary = true;
-                    Helper.totalScreensSelection++;
+                    TaxModelHelper.isIndividualSalary = true;
+                    TaxModelHelper.totalScreensSelection++;
                 } else {
-                    Helper.isIndividualSalary = false;
-                    Helper.totalScreensSelection--;
+                    TaxModelHelper.isIndividualSalary = false;
+                    TaxModelHelper.totalScreensSelection--;
                 }
             }
         });
@@ -84,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    Helper.isIndividualProperty = true;
-                    Helper.totalScreensSelection++;
+                    TaxModelHelper.isIndividualProperty = true;
+                    TaxModelHelper.totalScreensSelection++;
                 } else {
-                    Helper.isIndividualProperty = false;
-                    Helper.totalScreensSelection--;
+                    TaxModelHelper.isIndividualProperty = false;
+                    TaxModelHelper.totalScreensSelection--;
                 }
             }
         });
@@ -96,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    Helper.isIndividualBusiness = true;
-                    Helper.totalScreensSelection++;
+                    TaxModelHelper.isIndividualBusiness = true;
+                    TaxModelHelper.totalScreensSelection++;
                 } else {
-                    Helper.isIndividualBusiness = false;
-                    Helper.totalScreensSelection--;
+                    TaxModelHelper.isIndividualBusiness = false;
+                    TaxModelHelper.totalScreensSelection--;
                 }
             }
         });
@@ -108,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    Helper.isIndividualCapitalGain = true;
-                    if (!Helper.isIndividualOtherSources)
-                        Helper.totalScreensSelection++;
+                    TaxModelHelper.isIndividualCapitalGain = true;
+                    if (!TaxModelHelper.isIndividualOtherSources)
+                        TaxModelHelper.totalScreensSelection++;
                 } else {
-                    Helper.isIndividualCapitalGain = false;
-                    if (!Helper.isIndividualOtherSources)
-                        Helper.totalScreensSelection--;
+                    TaxModelHelper.isIndividualCapitalGain = false;
+                    if (!TaxModelHelper.isIndividualOtherSources)
+                        TaxModelHelper.totalScreensSelection--;
                 }
             }
         });
@@ -122,13 +123,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    Helper.isIndividualOtherSources = true;
-                    if (!Helper.isIndividualCapitalGain)
-                        Helper.totalScreensSelection++;
+                    TaxModelHelper.isIndividualOtherSources = true;
+                    if (!TaxModelHelper.isIndividualCapitalGain)
+                        TaxModelHelper.totalScreensSelection++;
                 } else {
-                    Helper.isIndividualOtherSources = false;
-                    if (!Helper.isIndividualCapitalGain)
-                        Helper.totalScreensSelection--;
+                    TaxModelHelper.isIndividualOtherSources = false;
+                    if (!TaxModelHelper.isIndividualCapitalGain)
+                        TaxModelHelper.totalScreensSelection--;
                 }
             }
         });
@@ -136,19 +137,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void decideActivity() {
 
-        if (Helper.isIndividualSalary) {
+        if (TaxModelHelper.isIndividualSalary) {
             intent = new Intent(MainActivity.this, IndividualSalary.class);
         }
-        else if (Helper.isIndividualProperty) {
+        else if (TaxModelHelper.isIndividualProperty) {
             intent = new Intent(MainActivity.this, IndividualPropertyActivity.class);
         }
-        else if (Helper.isIndividualBusiness) {
+        else if (TaxModelHelper.isIndividualBusiness) {
             intent = new Intent(MainActivity.this, IndividualBusinessActivity.class);
         }
-        else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+        else if (TaxModelHelper.isIndividualCapitalGain || TaxModelHelper.isIndividualOtherSources) {
             intent = new Intent(MainActivity.this, IndividualCapitalGainActivity.class);
         }
-        else if (Helper.totalScreensSelection < 4) {
+        else if (TaxModelHelper.totalScreensSelection < 4) {
             Toast.makeText(MainActivity.this, "Kindly Select atleast 1 Type of income", Toast.LENGTH_LONG).show();
             return;
         }

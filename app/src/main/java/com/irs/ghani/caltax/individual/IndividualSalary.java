@@ -25,8 +25,10 @@ import com.irs.ghani.caltax.MainActivity;
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
 import com.irs.ghani.caltax.util.ProgressBarAnimation;
+import com.irs.ghani.caltax.util.TaxModelHelper;
 
 import java.io.Console;
+import java.text.DecimalFormat;
 import java.util.Properties;
 
 public class IndividualSalary extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class IndividualSalary extends AppCompatActivity {
     EditText mSalary;
     EditText mSalaryExempt;
     TextView mTaxableSalary;
-    String taxableSalary = "";
+    double taxableSalary ;
 
 
     @Override
@@ -71,13 +73,13 @@ public class IndividualSalary extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
+        mTextViewProgressRemaining.setText(TaxModelHelper.currentScreensSelection + "/" + TaxModelHelper.totalScreensSelection);
     }
 
     private void setListeners() {
 
         mNext.setOnClickListener(view -> {
-            Helper.currentScreensSelection++;
+            TaxModelHelper.currentScreensSelection++;
             decideActivity();
         });
 
@@ -90,12 +92,9 @@ public class IndividualSalary extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() != 0) {
-                    taxableSalary = Double.toString(calculateTaxableSalary());
-                    Log.d("SALARY", taxableSalary);
-                    mTaxableSalary.setText(taxableSalary);
+                    mTaxableSalary.setText(calculateTaxableSalary());
                 } else {
                     mSalary.setText("0");
-                    Log.d("SALARY", taxableSalary);
                 }
             }
 
@@ -114,11 +113,9 @@ public class IndividualSalary extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() != 0) {
-                    taxableSalary = Double.toString(calculateTaxableSalary());
-                    mTaxableSalary.setText(taxableSalary);
+                    mTaxableSalary.setText(calculateTaxableSalary());
                 } else {
                     mSalaryExempt.setText("0");
-                    Log.d("EXEMPT SALARY", taxableSalary);
                 }
             }
 
@@ -129,35 +126,29 @@ public class IndividualSalary extends AppCompatActivity {
         });
     }
 
-    private double calculateTaxableSalary() {
-
-/*
-        int salary = Integer.parseInt(mSalary.getText().toString());
-        int exemptSalary = Integer.parseInt(mSalaryExempt.getText().toString());
-        return (salary - exemptSalary) > 0 ? (salary - exemptSalary) : -1;
-*/
+    private String calculateTaxableSalary() {
 
         double salary = Double.parseDouble(mSalary.getText().toString());
         double exemptSalary = Double.parseDouble(mSalaryExempt.getText().toString());
-
-        return (salary - exemptSalary) > 0 ? (salary - exemptSalary) : -1;
+        taxableSalary = salary - exemptSalary;
+        return taxableSalary > 0 ? Helper.convertExponentToReadableString(taxableSalary) : "-1";
     }
 
     private void decideActivity() {
 
-        if (Helper.isIndividualProperty) {
+        if (TaxModelHelper.isIndividualProperty) {
             intent = new Intent(IndividualSalary.this, IndividualPropertyActivity.class);
-        } else if (Helper.isIndividualBusiness) {
+        } else if (TaxModelHelper.isIndividualBusiness) {
             intent = new Intent(IndividualSalary.this, IndividualBusinessActivity.class);
-        } else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+        } else if (TaxModelHelper.isIndividualCapitalGain || TaxModelHelper.isIndividualOtherSources) {
             intent = new Intent(IndividualSalary.this, IndividualCapitalGainActivity.class);
         } else {
             intent = new Intent(IndividualSalary.this, IndividualDeductableAllowance.class);
         }
 
-        if (Double.parseDouble(taxableSalary) > 0) {
+        if (taxableSalary > 0) {
 
-            Helper.setTaxableSalary(Double.parseDouble(taxableSalary));
+            TaxModelHelper.setTaxableSalary(taxableSalary);
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(IndividualSalary.this);
             startActivity(intent, options.toBundle());

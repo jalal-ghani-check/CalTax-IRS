@@ -20,6 +20,7 @@ import com.irs.ghani.caltax.MainActivity;
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
 import com.irs.ghani.caltax.util.ProgressBarAnimation;
+import com.irs.ghani.caltax.util.TaxModelHelper;
 
 public class TaxCreditsActivity extends AppCompatActivity {
 
@@ -67,14 +68,14 @@ public class TaxCreditsActivity extends AppCompatActivity {
         animator.start();
 
         //ProgressBar Remaining Value
-        mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
+        mTextViewProgressRemaining.setText(TaxModelHelper.currentScreensSelection + "/" + TaxModelHelper.totalScreensSelection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (Helper.currentScreensSelection > 1)
-            Helper.currentScreensSelection--;
+        if (TaxModelHelper.currentScreensSelection > 1)
+            TaxModelHelper.currentScreensSelection--;
     }
 
 
@@ -96,7 +97,7 @@ public class TaxCreditsActivity extends AppCompatActivity {
     private void setListeners()
     {
         mNext.setOnClickListener(view -> {
-            Helper.currentScreensSelection++;
+            TaxModelHelper.currentScreensSelection++;
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(TaxCreditsActivity.this);
             startActivity(intent, options.toBundle());

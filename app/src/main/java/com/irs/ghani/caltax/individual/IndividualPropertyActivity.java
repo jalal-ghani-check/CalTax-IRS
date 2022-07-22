@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
 import com.irs.ghani.caltax.util.ProgressBarAnimation;
+import com.irs.ghani.caltax.util.TaxModelHelper;
 
 public class IndividualPropertyActivity extends AppCompatActivity {
 
@@ -81,14 +82,14 @@ public class IndividualPropertyActivity extends AppCompatActivity {
         animator.start();
 
         //ProgressBar Remaining Value
-        mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
+        mTextViewProgressRemaining.setText(TaxModelHelper.currentScreensSelection + "/" + TaxModelHelper.totalScreensSelection);
 
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Helper.backPressed();
+        TaxModelHelper.backPressed();
     }
 
     private void setViews() {
@@ -199,16 +200,16 @@ public class IndividualPropertyActivity extends AppCompatActivity {
         });
 
         mNext.setOnClickListener(view -> {
-            Helper.currentScreensSelection++;
+            TaxModelHelper.currentScreensSelection++;
             decideActivity();
         });
     }
 
     private void decideActivity() {
 
-       if (Helper.isIndividualBusiness) {
+       if (TaxModelHelper.isIndividualBusiness) {
             intent = new Intent(IndividualPropertyActivity.this, IndividualBusinessActivity.class);
-        } else if (Helper.isIndividualCapitalGain || Helper.isIndividualOtherSources) {
+        } else if (TaxModelHelper.isIndividualCapitalGain || TaxModelHelper.isIndividualOtherSources) {
             intent = new Intent(IndividualPropertyActivity.this, IndividualCapitalGainActivity.class);
         } else {
             intent = new Intent(IndividualPropertyActivity.this, IndividualDeductableAllowance.class);
@@ -216,7 +217,7 @@ public class IndividualPropertyActivity extends AppCompatActivity {
 
         if (Integer.parseInt(taxableIncomeFromProperty) > 0) {
 
-            Helper.setTaxableIncomeFromProperty(Integer.parseInt(taxableIncomeFromProperty));
+            TaxModelHelper.setTaxableIncomeFromProperty(Integer.parseInt(taxableIncomeFromProperty));
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(IndividualPropertyActivity.this);
             startActivity(intent, options.toBundle());

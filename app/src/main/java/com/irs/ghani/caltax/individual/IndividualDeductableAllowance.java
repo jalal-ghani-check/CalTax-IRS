@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.irs.ghani.caltax.R;
 import com.irs.ghani.caltax.util.Helper;
 import com.irs.ghani.caltax.util.ProgressBarAnimation;
+import com.irs.ghani.caltax.util.TaxModelHelper;
 
 public class IndividualDeductableAllowance extends AppCompatActivity {
 
@@ -65,14 +66,14 @@ public class IndividualDeductableAllowance extends AppCompatActivity {
         animator.start();
 
         //ProgressBar Remaining Value
-        mTextViewProgressRemaining.setText(Helper.currentScreensSelection + "/" + Helper.totalScreensSelection);
+        mTextViewProgressRemaining.setText(TaxModelHelper.currentScreensSelection + "/" + TaxModelHelper.totalScreensSelection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if (Helper.currentScreensSelection > 1)
-            Helper.currentScreensSelection--;
+        if (TaxModelHelper.currentScreensSelection > 1)
+            TaxModelHelper.currentScreensSelection--;
     }
 
 
@@ -94,7 +95,7 @@ public class IndividualDeductableAllowance extends AppCompatActivity {
     private void setListeners()
     {
         mNext.setOnClickListener(view -> {
-            Helper.currentScreensSelection++;
+            TaxModelHelper.currentScreensSelection++;
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(IndividualDeductableAllowance.this);
             startActivity(intent, options.toBundle());
